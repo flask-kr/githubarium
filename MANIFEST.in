@@ -1,0 +1,2 @@
+recursive-include githubarium/static *.css *.js *.eot *.ttf *.woff *.otf *.svg *.gif *.jpg *.png
+recursive-include githubarium/templates *.html
