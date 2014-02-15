@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" media="all" href="/static/semantic-0.12.4/css/semantic.min.css" />
+    <style>
+        html, body { margin: 0; padding: 0 }
+    </style>
+</head>
+<body>
+<div class="ui fixed main menu">
+    <a class="active item" href="{{ url_for("home") }}">
+        <i class="home icon"></i> Githubarium
+    </a>
+    <div class="right menu">
+        <a class="item">
+            <i class="github sign icon"></i> Sign in with GitHub
+        </a>
+    </div>
+</div>
+{% block content %}{% endblock %}
+</body>
+</html>

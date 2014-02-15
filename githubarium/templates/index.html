@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="ui three column grid">
+    {%- for i in data %}
+        <div class="column">
+            <div class="ui segment">
+                <a href="{{ i.html_url }}">{{ i.full_name }}</a>
+                {{ i.description }}
+                {% if i.language %}<div class="ui small label">{{ i.language }}</div>{% endif %}
+            </div>
+        </div>
+    {% endfor -%}
+    </div>
+{% endblock %}

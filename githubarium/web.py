@@ -1,9 +1,6 @@
 from flask import Flask, render_template
 import json
 
-with open('data.json', encoding='utf-8') as f:
-    SAMPLE_DATA = json.load(f)
-
 
 class Application(Flask):
     def initialize(self):
@@ -15,4 +12,10 @@ app.config.from_object('githubarium.default_config')
 
 @app.route('/')
 def home():
-    return render_template('index.html', data=SAMPLE_DATA)
+    signed_in = False
+    if not signed_in:
+        return render_template('welcome.html')
+    else:
+        with open('data.json', encoding='utf-8') as f:
+            SAMPLE_DATA = json.load(f)
+        return render_template('index.html', data=SAMPLE_DATA)
