@@ -254,3 +254,8 @@ texinfo_documents = [
 intersphinx_mapping = {
     'http://docs.python.org/': None,
 }
+
+
+# -- Options for sphinx.ext.autodoc extension ---------------------------------
+
+autodoc_default_flags = ['members']
