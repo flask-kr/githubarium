@@ -3,4 +3,8 @@ python:
   - "3.3"
 install:
   - pip install .
-script: py.test
+  - pip install pytest-cov coveralls
+script:
+  py.test --cov=githubarium
+after_success:
+  coveralls
