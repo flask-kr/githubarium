@@ -8,3 +8,10 @@ script:
   py.test --cov=githubarium
 after_success:
   coveralls
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/c4113dbdc6199228a4bb
+    on_success: change
+    on_failure: always
+    on_start: false
