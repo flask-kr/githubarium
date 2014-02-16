@@ -6,7 +6,7 @@ bp = Blueprint('home', __name__)
 
 
 @bp.route('/')
-def home():
+def index():
     signed_in = False
     if not signed_in:
         return render_template('welcome.html')
