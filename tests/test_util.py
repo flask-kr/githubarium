@@ -23,3 +23,15 @@ def test_import_string_identical(location, expected):
 ])
 def test_import_string_equals(location, expected):
     assert import_string(location) == expected
+
+
+def test_import_string_with_absent_module():
+    e = pytest.raises(ImportError, import_string, 'flying_spaghetti')
+    assert e.value.name == 'flying_spaghetti'
+    del e
+
+
+def test_import_string_with_absent_object():
+    e = pytest.raises(AttributeError, import_string, 'json:run_javascript')
+    assert repr('run_javascript') in str(e.value)
+    del e
