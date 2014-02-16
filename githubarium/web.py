@@ -1,21 +1,18 @@
-from flask import Flask, render_template
-import json
+from flask import Flask
+
+from .util import import_string
+
+
+BLUEPRINTS = [
+    ('.home:bp', {}),
+]
 
 
 class Application(Flask):
     def initialize(self):
-        pass
+        for location, options in BLUEPRINTS:
+            bp = import_string(location, 'githubarium')
+            self.register_blueprint(bp, **options)
 
 app = Application(__name__)
 app.config.from_object('githubarium.default_config')
-
-
-@app.route('/')
-def home():
-    signed_in = False
-    if not signed_in:
-        return render_template('welcome.html')
-    else:
-        with open('data.json', encoding='utf-8') as f:
-            SAMPLE_DATA = json.load(f)
-        return render_template('index.html', data=SAMPLE_DATA)
