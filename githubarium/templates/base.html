@@ -12,10 +12,17 @@
     <a class="active item" href="{{ url_for("home.index") }}">
         <i class="home icon"></i> Githubarium
     </a>
-    <div class="right menu">
-        <a class="item">
+    <div class="right icon menu">
+    {%- if not authenticated() %}
+        <a class="item" href="{{ url_for('user.login') }}">
             <i class="github sign icon"></i> Sign in with GitHub
         </a>
+    {%- else -%}
+        <div class="item">{{ g.user_info.login }}</div>
+        <a class="item" href="{{ url_for('user.logout') }}">
+            <i class="sign out icon"></i>
+        </a>
+    {% endif -%}
     </div>
 </div>
 {% block content %}{% endblock %}

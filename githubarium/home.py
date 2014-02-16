@@ -1,5 +1,5 @@
-import json
 from flask import Blueprint, render_template
+from .user import github, authenticated
 
 
 bp = Blueprint('home', __name__)
@@ -7,10 +7,8 @@ bp = Blueprint('home', __name__)
 
 @bp.route('/')
 def index():
-    signed_in = False
-    if not signed_in:
+    if not authenticated():
         return render_template('welcome.html')
     else:
-        with open('data.json', encoding='utf-8') as f:
-            sample_data = json.load(f)
-        return render_template('index.html', data=sample_data)
+        resp = github.get('user/starred')
+        return render_template('index.html', data=resp.data)
