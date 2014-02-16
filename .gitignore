@@ -9,3 +9,6 @@ __pycache__/
 # tox environments
 .tox/
 /.coverage
+
+# local configuration
+local.cfg
