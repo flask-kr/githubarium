@@ -4,8 +4,8 @@ GitHubarium
 .. image:: https://travis-ci.org/flask-kr/githubarium.png?branch=master
    :target: https://travis-ci.org/flask-kr/githubarium
 
-.. image:: https://coveralls.io/repos/flask-kr/githubarium/badge.png
-   :target: https://coveralls.io/r/flask-kr/githubarium 
+.. image:: https://coveralls.io/repos/flask-kr/githubarium/badge.png?branch=master
+   :target: https://coveralls.io/r/flask-kr/githubarium?branch=master 
 
 .. image:: https://badges.gitter.im/flask-kr/githubarium.png
    :target: https://gitter.im/flask-kr/githubarium
