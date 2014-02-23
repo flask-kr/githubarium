@@ -66,5 +66,12 @@ def authorized(response):
             reason=request.args['error_reason'],
             error=request.args['error_description'],
         )
-    session['github_token'] = (response['access_token'], '')
+    try:
+        github_token = (response['access_token'], '')
+    except KeyError:
+        if response.get('error') == 'bad_verification_code':
+            return redirect(url_for('user.login'))
+        else:
+            raise
+    session['github_token'] = github_token
     return redirect(url_for('home.index'))
