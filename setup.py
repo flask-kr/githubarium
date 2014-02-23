@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
+import sys
 import os.path
 import warnings
 
@@ -43,6 +45,19 @@ def readme():
         return ''
 
 
+class PyTest(TestCommand):
+    def finalize_options(self):
+        super().finalize_options()
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
+
+
 setup(
     name='Githubarium',
     version='0.1.0dev1',
@@ -61,6 +76,9 @@ setup(
     tests_require=[
         'pytest',
     ],
+    cmdclass={
+        'test': PyTest,
+    },
     dependency_links=dependency_links,
     classifiers=[line.strip() for line in classifiers.splitlines() if line],
 )
