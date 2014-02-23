@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="ui three column grid">
-    {%- for i in data %}
-        <div class="column">
-            <div class="ui segment">
-                <a href="{{ i.html_url }}">{{ i.full_name }}</a>
-                {{ i.description }}
-                {% if i.language %}<div class="ui small label">{{ i.language }}</div>{% endif %}
+<div class="ui one column page grid">
+{%- for k, v in data %}
+<section class="column">
+    <h1 class="ui medium block header">{{ k|d('Unclassified', True) }}</h1>
+    <div class="ui three stackable items repositories">
+    {%- for i in v %}
+        <div class="item">
+            <div class="content">
+                <a class="name" href="{{ i.html_url }}">{{ i.full_name }}</a>
+                <p class="description">{{ i.description|truncate(100, True) }}</p>
+            </div>
+            <div class="extra">
+                <i class="star basic icon"></i> {{ i.stargazers_count }} |
+                <i class="fork code icon"></i> {{ i.forks_count }}
             </div>
         </div>
     {% endfor -%}
     </div>
+</section>
+{% endfor -%}
+</div>
 {% endblock %}

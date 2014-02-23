@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from flask import Blueprint, render_template, current_app
 from requests.utils import parse_header_links
 
@@ -12,7 +14,13 @@ def index():
     if not authenticated():
         return render_template('welcome.html')
     else:
-        data = list(fetch_all_starred_repos())
+        data = ()
+        if not data:
+            buf = defaultdict(list)
+            for i in fetch_all_starred_repos():
+                buf[i['language']].append(i)
+            data = sorted(buf.items(), key=lambda x: len(x[1]) if x[0] else -1,
+                          reverse=True)
         return render_template('index.html', data=data)
 
 
