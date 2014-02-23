@@ -10,6 +10,7 @@ requirements = [
     'Flask >= 0.10.1',
     'Flask-OAuthlib >= 0.4.2',
     'SQLAlchemy',
+    'requests',
 ]
 
 extras_require = {
